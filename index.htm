@@ -1,0 +1,1637 @@
+<!DOCTYPE html>
+<!-- saved from url=(0050)http://c.3g.163.com/nc/qa/turntable/index.html -->
+<!-- saved from url=(0050)http://3g.163.com/ntes/special/00340BF8/14eve.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta content="target-densitydpi=device-dpi,width=640" name="viewport">
+    <title>新闻大转盘</title>
+    <meta name="author" content="网易">
+    <meta name="Copyright" content="网易版权所有">
+    <meta name="format-detection" content="email=no,address=no,telephone=no">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            -webkit-user-select: text;
+        }
+        *, :after, :before {
+            -webkit-box-sizing: border-box;/*高宽不算padding,margin*/
+            -webkit-text-size-adjust: none;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+        textarea,input{
+            resize: none;/*禁用可缩放*/
+            outline: none;/*禁用发光效果*/
+            -webkit-appearance: none;/*禁用增加外观效果*/
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            background: #fff;
+            overflow: scroll;
+        }
+        body, html {
+            text-align: left;
+            height: 100%;/*高度必须为100%*/
+            width: 100%;
+            font-family: "Helvetica Neue",Arial, HelveticaNeue, "Helvetica-Neue", Helvetica, "BBAlpha Sans", sans-serif;
+            font-size: 16px;
+            font-weight: normal;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-box-align: center;
+            color: #ffffff;
+        }
+        body{
+            width: 640px;
+            opacity: 0;
+            -webkit-transition: opacity 500ms ease-in;
+            background-color: #49155a;
+        }
+        .animated {
+            -webkit-animation-duration: 1s;
+            animation-duration: 1s;
+            -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+        }
+
+        .animated.hinge {
+            -webkit-animation-duration: 2s;
+            animation-duration: 2s;
+        }
+        @-webkit-keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .fadeIn {
+            -webkit-animation-name: fadeIn;
+            animation-name: fadeIn;
+        }
+        @-webkit-keyframes fadeOut {
+            0% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+
+        .fadeOut {
+            -webkit-animation-name: fadeOut;
+            animation-name: fadeOut;
+        }
+        .info-container{
+            width: 100%;
+            height: 1005px;
+            background-image: url("http://img3.cache.netease.com/img14/images/bg1.jpg");
+            overflow: hidden;
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
+        .info-container .info-text{
+            width: 100%;
+            text-align: left;
+            font-size: 24px;
+            padding:0 65px;
+            position: absolute;
+           /* bottom : 250px;*/
+            top: 474px;
+            font-family: SimHei;
+            line-height: 34px;
+            font-weight: 100;
+        }
+        .info-container .info-play{
+            position: absolute;
+            /*bottom : 90px;*/
+            top: 704px;
+            left: 50%;
+            margin-left: -105px;
+            width: 210px;
+            height: 210px;
+            -webkit-border-radius: 105px;
+            background-color: #91c724;
+            padding-top: 50px;
+        }
+        .info-container .press-play{
+            background-color: #78a51d;
+        }
+        .info-container .info-play>span{
+            display: block;
+            text-align: center;
+        }
+        .info-container .info-play>span:nth-child(1){
+            font-size: 57px;
+        }
+        .info-container .info-play>span:nth-child(2){
+            letter-spacing: 10px;
+            font-size: 33px;
+        }
+        .sprites-images{
+            background-image: url("http://img3.cache.netease.com/img14/images/sprite.png");
+            background-repeat: no-repeat;
+        }
+        .info-other{
+            position: absolute;
+            top: 918px;
+            width: 54px;
+            height: 54px;
+        }
+        .info-container .info-question{
+            left: 0;
+            margin-left: 35px;
+            background-position: -360px -140px;
+        }
+        .info-container .info-post{
+            right: 0;
+            margin-right: 35px;
+            background-position: -360px -200px;
+        }
+        .game-container{
+            width: 100%;
+            height: 1005px;
+            background-image: url("http://img3.cache.netease.com/img14/images/bg.jpg");
+            overflow: hidden;
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
+
+        .game-container .game-title{
+            text-align: center;
+            font-size: 32px;
+            margin-top: 45px;
+        }
+        .game-container .game-title>span{
+            font-size: 82px;
+            font-style: italic;
+        }
+        .game-container .game-countdown{
+            position: absolute;
+            top: 26px;
+            right: 90px;
+        }
+        .game-container .game-countdown .game-countdown-icon{
+            position:absolute;
+            right:90px;
+            background-position: -360px -20px;
+            width: 27px;
+            height: 27px;
+            vertical-align: text-bottom;
+        }
+        .game-container .game-countdown .game-countdown-time{
+            position: absolute;
+            right: 55px;
+            font-size: 27px;
+            line-height: 27px
+        }
+        .game-container .game-turntable{
+            width: 608px;
+            height: 608px;
+            margin: 0 auto;
+            background-image: url("http://img3.cache.netease.com/img14/images/turntable.png");
+            background-position: -16px -20px;
+            background-repeat: no-repeat;
+            -webkit-border-radius: 304px;
+            text-align: center;
+            font-size: 26px;
+            color: #ff949c;
+        }
+        .game-container .game-turntable .game-question{
+            position:absolute;
+            width: 260px;
+            height: 150px;
+            left: 50%;
+            top: 50%;
+            margin-top: -75px;
+            margin-left: -130px;
+            max-width: 260px;
+        }
+        .game-container .game-turntable .game-question-top{
+           margin-top: -260px;
+        }
+        .game-container .game-turntable .game-question-left{
+            -webkit-transform:rotate(-90deg);
+            margin-left: -315px;
+        }
+        .game-container .game-turntable .game-question-right{
+            -webkit-transform:rotate(-270deg);
+            margin-left: 55px;
+        }
+        .game-container .game-turntable .game-question-bottom{
+            -webkit-transform:rotate(-180deg);
+            margin-top: 110px;
+        }
+        .game-container .game-turntable .in{
+            max-width: 130px;
+            width: 130px;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            margin-top: 70px;
+            color: #d09d58;
+        }
+        .game-container .game-turntable .out{
+            display: block;
+            height: 48px;
+        }
+        .game-container .game-point{
+            position: absolute;
+            top: 149px;
+            left: 50%;
+            z-index: 9999;
+            margin-left: -21px;
+            width:42px;
+            height:0px;
+            border-left:20px solid transparent;
+            border-right:20px solid transparent;
+            border-top:20px solid #fff0f1;
+            font-size:0px;
+            line-height:0px;
+        }
+
+        .select{
+            width: 160px;
+            height: 160px;
+            margin-bottom: 100px;
+            -webkit-border-radius: 80px;
+            text-align: center;
+            padding-top: 30px;
+        }
+        .select>span{
+            display: block;
+        }
+        .game-container .select span:nth-child(1){
+            font-size: 54px;
+        }
+        .game-container .select span:nth-child(2){
+            font-size: 28px;
+        }
+        .yes{
+            float: left;
+            margin-left: 75px;
+        }
+        .no{
+            float: right;
+            margin-right: 75px;
+        }
+        .game-container .yes{
+            background-color: #91c724;
+        }
+        .game-container .press-yes{
+            background-color: #78a51d;
+        }
+        .game-container .no{
+            background-color: #ec2e3c;
+        }
+        .game-container .press-no{
+            background-color: #c12430;
+        }
+        .layer{
+            position: absolute;
+            top: 50%;
+            margin-top: -125px;
+            left: 50%;
+            margin-left: -125px;
+            width: 250px;
+            height: 250px;
+            background-color: #000000;
+            opacity: 0.8;
+            -webkit-border-radius: 125px;
+
+        }
+        .layer .layer-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-left: -70.5px;
+            margin-top: -79px;
+            width: 141px;
+            height: 158px;
+        }
+        .layer .layer-right{
+            background-position: -360px -280px;
+        }
+        .layer .layer-wrong{
+            background-position: -360px -660px;
+        }
+        .layer .layer-timeover{
+            background-position: -360px -480px;
+        }
+        .finish-container{
+            width: 100%;
+            height: 1005px;
+            background-image: url("http://img3.cache.netease.com/img14/images/bg.jpg");
+            overflow: hidden;
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
+        .finish-container .finish-title{
+            margin-top: 75px;
+            text-align: center;
+        }
+        .finish-container .finish-title-icon{
+            width: 251px;
+            height: 62px;
+            margin: 0 auto;
+            background-position: -360px -860px;
+        }
+        .finish-container .finish-title>span{
+            display: block;
+            font-size: 24px;
+            margin-top: 10px;
+        }
+        .finish-container .finish-result{
+            width: 335px;
+            height: 350px;
+            margin: 17px auto;
+        }
+        .finish-container .finish-resultA{
+            background-position: -20px -20px;
+        }
+        .finish-container .finish-resultB{
+              background-position: -20px -420px;
+          }
+        .finish-container .finish-resultC{
+              background-position: -20px -785px;
+          }
+        .finish-container .finish-resultD{
+              background-position: -20px -1185px;
+        }
+        .finish-container .finish-resultE{
+              background-position: -20px -1553px;
+        }
+        .finish-container .finish-score{
+            text-align: center;
+        }
+        .finish-container .finish-score>span:nth-child(1){
+            display: inline-block;
+            width: 24px;
+            height: 19px;
+            background-position: -360px -60px;
+        }
+        .finish-container .finish-score>span:nth-child(2){
+            font-size: 29px;
+        }
+        .finish-container .finish-score>span:nth-child(3){
+            display: inline-block;
+            width: 19px;
+            height: 19px;
+            background-position: -360px -100px;
+            margin-left: 45px;
+        }
+        .finish-container .finish-score>span:nth-child(4){
+            font-size: 29px;
+        }
+        .finish-container .finish-words{
+            text-align: center;
+        }
+        .finish-container .finish-words>span{
+            display: block;
+            width: 390px;
+            font-size: 24px;
+            margin: 10px auto;
+        }
+        .finish-container .yes{
+            background-color: #fc880f;
+            font-size: 36px;
+        }
+        .finish-container .press-yes{
+            background-color: #db7914;
+            font-size: 36px;
+        }
+        .finish-container .no{
+            background-color: #91c724;
+            font-size: 36px;
+        }
+        .finish-container .press-no{
+            background-color: #78a51d;
+            font-size: 36px;
+        }
+        .finish-container .select>span:nth-child(1){
+            margin-top: 30px;
+        }
+
+    </style>
+</head>
+<body ontouchstart="" style="opacity: 1;">
+  <div class="info-container animated" id="_info_container">
+    <div class="info-text">
+        <p>
+           当转盘停止转动时，快速判断内外转盘中的内容是否匹配，匹配选“正确”，否则选“错误”。每10道题，每题作答时间为10秒，游戏结束给出结果和评分，按照正确的数量和答题速度综合给出奖励，每人每天有一次领奖机会。
+        </p>
+    </div>
+    <div class="info-play" id="_info_play">
+       <span>PLAY</span>
+       <span>开始玩</span>
+    </div>
+    <div class="sprites-images info-question info-other" id="_info_question"></div>
+    <div class="sprites-images info-post info-other" id="_info_share"></div>
+  </div>
+  <div class="game-container animated" id="_game_container" style="display: none;">
+    <div class="game-point"></div>
+    <div class="game-countdown" id="_game_countdown" style="display: none;">
+     <div class="sprites-images game-countdown-icon"></div>
+     <div class="game-countdown-time" id="_game_countdown_time">10</div>
+    </div>
+     <div class="game-title">第<span id="_game_title">1</span>题</div>
+     <div class="game-turntable" id="_game_turntable">
+         <div class="game-question game-question-top" id="data0">
+           <span class="out"></span>
+           <span class="in"></span>
+       </div>
+         <div class="game-question game-question-left" id="data1">
+             <span class="out"></span>
+             <span class="in"></span>
+         </div>
+         <div class="game-question game-question-bottom" id="data2">
+             <span class="out"></span>
+             <span class="in"></span>
+         </div>
+         <div class="game-question game-question-right" id="data3">
+             <span class="out"></span>
+             <span class="in"></span>
+         </div>
+
+
+     </div>
+       <div class="select yes" id="_game_yes">
+          <span>YES</span>
+          <span>正确</span>
+       </div>
+       <div class="select no" id="_game_no">
+           <span>NO</span>
+           <span>错误</span>
+       </div>
+  </div>
+  <div class="finish-container animated" id="_finish_container" style="display: none;">
+     <div class="finish-title">
+         <div class="sprites-images finish-title-icon"></div>
+         <span>你的成绩为</span>
+     </div>
+      <div class="sprites-images finish-result" id="_finish_result"></div>
+      <div class="finish-score">
+          <span class="sprites-images"></span>
+          <span id="_finish_score_right">9</span>
+          <span class="sprites-images"></span>
+          <span id="_finish_score_wrong">6</span>
+      </div>
+      <div class="finish-words">
+          <span id="_finish_words"></span>
+      </div>
+      <div class="select yes" id="_finish_shareScore">
+          <span>晒成绩</span>
+      </div>
+      <div class="select no" id="_finish_playAgain">
+          <span>再玩一次</span>
+      </div>
+  </div>
+  <div class="layer" style="display: none;" id="layer">
+      <div class="sprites-images layer-icon" id="_layer_icon"></div>
+  </div>
+  <form action="http://active.163.com/service/form/v1/1314/submit" method="post" id="submitData" target="_iframe">
+
+  </form>
+
+  <iframe src="javascript:void(0)" style="display:none;" frameborder="0" name="_iframe" id="_iframe"></iframe>
+  <div style="display:none" id="__newsapp_sharetext">网易新闻客户端</div>
+  <div style="display:none" id="__newsapp_sharephotourl">http://img3.cache.netease.com/img14/images/share3.jpg</div><!--微博分享图片-->
+  <div style="display:none" id="__newsapp_sharewxtext">网易新闻客户端</div>
+  <div style="display:none" id="__newsapp_sharewxtitle">开心大转盘，新闻也能玩起来！</div>
+  <div style="display:none" id="__newsapp_sharewxurl">http://3g.163.com/links/4882</div>
+  <div style="display:none" id="__newsapp_sharewxthumburl">http://img1.cache.netease.com/3g/newsapp/newapp201312/images/news_app_download_logo.png</div><!--微信分享图片-->
+  <script src="http://img3.cache.netease.com/utf8/3g/libs/zepto.min.js"></script>
+  <script>
+      ;(function($){
+          if(!$.os.tablet && !$.os.phone){
+              window.location.href = "http://img4.cache.netease.com/cnews/2014/3/13/2014031316501269eca.png";
+          }
+      })(Zepto);
+  </script>
+  <script type="text/javascript">
+  ;(function(window,doc){
+      var Navigator = (function(){
+          var localStorage = window.localStorage,frame;
+          /**
+           * iframe 元素
+           *
+           * @property {Element} frame
+           */
+          frame = null;
+          /**
+           * 创建iframe,帮助解决iOS的UIWebView没有JS API
+           *
+           * @method getFrame
+           * @return {Element} iframe
+           */
+          function getFrame(){
+              var _frame = document.createElement("iframe");
+              _frame.setAttribute("style", "display:none;width:0;height:0;position: absolute;top:0;left:0;border:0;");
+              _frame.setAttribute("height","0px");
+              _frame.setAttribute("width","0px");
+              _frame.setAttribute("frameborder","0");
+              document.documentElement.appendChild(_frame);
+              return _frame;
+          }
+          /**
+           * 删除iframe
+           *
+           * @method removeFrame
+           * @param {Element} frame 执行的方法
+           */
+          function removeFrame(frame){
+              frame && frame.parentNode.removeChild(frame);
+          }
+          /**
+           * 执行与客户端交互的协议
+           *
+           * @method protocol
+           * @param {String} command 执行的协议及命令
+           * @param {boolean} single iOS时是否是使用独立的iframe,默认false
+           * @param {boolean} noframe iOS时是否不通过iframe,默认false
+           */
+          function protocol(command,single,noframe){
+              var _frame,timer;
+              //不通过iframe
+              if(noframe){window.location.href = command;return;}
+              //通过iframe
+              if(single){
+                  _frame = getFrame();
+                  _frame.setAttribute("src", command);
+                  timer = setTimeout(function(){
+                      removeFrame(_frame);
+                  },30000);
+                  _frame.onload = _frame.onreadystatechange = function(){
+                      clearTimeout(timer);
+                      removeFrame(_frame);
+                  };
+              }else{
+                  frame = frame || getFrame();
+                  frame.setAttribute("src", command);
+              }
+          }
+          /**
+           * 从localStorage里取一个值
+           *
+           * @method getLocalValue
+           * @param {String} id item id
+           * @return {String} value
+           */
+          function getLocalValue(id){
+              if(localStorage){
+                  return localStorage[id];
+              }else{
+                  return null;
+              }
+          }
+          /**
+           * 设置一个localStorage的值
+           *
+           * @method setLocalValue
+           * @param {String} id item id
+           * @param {String} val value
+           */
+          function setLocalValue(id,val){
+              if(localStorage){
+                  localStorage.setItem(id,val);
+              }
+          }
+          return {
+              localStorage: localStorage,
+              setLocalValue: setLocalValue,
+              getLocalValue: getLocalValue,
+              protocol: protocol
+          }
+      })();//end Object Navigator
+      /**
+       * window.location.search
+       * window.location.hash
+       */
+      var localParam = function(search,hash){
+          search = search || window.location.search;
+          hash = hash || window.location.hash;
+          var fn = function(str,reg){
+              if(str){
+                  var data = {};
+                  str.replace(reg,function( $0, $1, $2, $3 ){
+                      data[ $1 ] = $3;
+                  });
+                  return data;
+              }
+          }
+          return {search: fn(search,new RegExp( "([^?=&]+)(=([^&]*))?", "g" ))||{},hash: fn(hash,new RegExp( "([^#=&]+)(=([^&]*))?", "g" ))||{}};
+      }
+      function MetaHandler(){
+          var me = this;
+          var meta = {},_els;
+          /**
+           * 初始化
+           * _els
+           * meta = {name:{content:String,seriation:Array,store:{property:String},...},...}
+           * @method init
+           */
+          function init(){
+              _els = document.getElementsByTagName('meta');
+              for(var i=0;i<_els.length;i++){
+                  var name = _els[i].name;
+                  if(name){
+                      name = name.replace('-','_');
+                      meta[name] = {};
+                      meta[name].el = _els[i];
+                      meta[name].content = _els[i].content;
+                      meta[name].seriation = meta[name].content.split(',');
+                      meta[name].store = getContentStore(name);
+                  }
+              }
+              return me;
+          }
+          function getContentStore(name){
+              name = name.replace('-','_');
+              var content = meta[name].seriation,store = {};
+              for(var i=0;i<content.length;i++){
+                  if(content[i].length<1){
+                      content[i] = null;
+                      delete content[i];
+                      content.length--;
+                  }else{
+                      var ct = content[i].split('='),
+                              pp = ct[0].replace('-','_');
+                      if(pp){
+                          store[pp] = ct[1];
+                      }
+                  }
+              }
+              return store;
+          }
+          this.setContent = function(name,value){
+              name = name.replace('-','_');
+              meta[name].content = value;
+              meta[name].el.content = value;
+              return me;
+          }
+          this.getContent = function(name){
+              name = name.replace('-','_');
+              return meta[name] && meta[name].content;
+          }
+          function updateContent(name){
+              meta[name].content = meta[name].seriation.join(',');
+              me.setContent(name,meta[name].content);
+              return me;
+          }
+          this.removeContentProperty = function(name,property){
+              var name = name.replace('-','_'),
+                      _property = property.replace('-','_');
+              if(meta[name]){
+                  if(meta[name].store[_property]!=null){
+                      for(var i = 0;i<meta[name].seriation.length;i++){
+                          if(meta[name].seriation[i].indexOf(property+'=')!=-1){
+                              meta[name].seriation[i] = null;
+                              delete meta[name].seriation[i];
+                              break;
+                          }
+                      }
+                  }
+                  updateContent(name);
+              }
+              return me;
+          }
+          this.getContentProperty = function(name,property){
+              name = name.replace('-','_');
+              property = property.replace('-','_');
+              return meta[name] && meta[name].store[property];
+          }
+          this.setContentProperty = function(name,property,value){
+              var name = name.replace('-','_'),
+                      _property = property.replace('-','_'),
+                      pv = property+'='+value;
+              if(meta[name]){
+                  if(meta[name].store[_property]!=null){
+                      meta[name].store[_property] = value;
+                      for(var i = 0;i<meta[name].seriation.length;i++){
+                          if(meta[name].seriation[i].indexOf(property+'=')!=-1){
+                              meta[name].seriation[i] = pv;
+                              break;
+                          }
+                      }
+                  }else{
+                      meta[name].store[_property] = value;
+                      meta[name].seriation.push(pv);
+                  }
+                  updateContent(name);
+              }
+              return me;
+          }
+          this.fixViewportWidth = function(width){
+              width = width || me.getContentProperty('viewport','width');
+              if(width != 'device-width'){
+                  var iw = window.innerWidth || width,
+                          ow = window.outerHeight || iw,
+                          sw = window.screen.width || iw,
+                          saw = window.screen.availWidth || iw,
+                          ih = window.innerHeight || width,
+                          oh = window.outerHeight || ih,
+                          ish = window.screen.height || ih,
+                          sah = window.screen.availHeight || ih,
+                          w = Math.min(iw,ow,sw,saw,ih,oh,ish,sah),
+                          ratio = w/width,
+                          dpr = window.devicePixelRatio,
+                          ratio = Math.min(ratio,dpr);
+                  var isAndroid=navigator.userAgent.match(/android/ig),
+                          isIos=navigator.userAgent.match(/iphone|ipod|ipad/ig);
+                  if(isAndroid){
+                      me.removeContentProperty('viewport','user-scalable');
+                      if(ratio<1){
+                          me.setContentProperty('viewport','initial-scale',ratio);
+                          //me.setContentProperty('viewport','minimum-scale',ratio);
+                          me.setContentProperty('viewport','maximum-scale',ratio);
+                      }
+                  }else if(isIos && !isAndroid){
+                      me.setContentProperty('viewport','user-scalable','no');
+                  }
+              }
+          }
+          init();
+      }//end MetaHandler
+      function Subject(subject){
+          this._subject = subject;
+          this.observers = [];
+      }
+      Subject.prototype = {
+          register: function(observer){
+              if(!observer){
+                  throw new Error('An observer can not be undefined!');
+              }else if(!observer.update || typeof observer.update !== 'function'){
+                  throw {
+                      name: 'Error',
+                      method: 'Subject.register',
+                      message: 'An observer can not register without an update method!'
+                  }
+              }
+              this.unregister(observer);//防止重复注册
+              this.observers.push(observer);
+              return this;
+          },
+          unregister: function(observer){
+              this.observers = this.observers.filter(function(obsv){
+                  if(obsv !== observer){
+                      return obsv;
+                  }
+              });
+              return this;
+          },
+          notify: function(args){
+              this.observers.forEach(function(obsv){
+                  obsv.update( args );
+              });
+              return this;
+          }
+      }
+      function newsApp(protocol){
+          var emptyFn = function(){},
+                  isNewsApp = (/NewsApp/ig).test(navigator.userAgent),
+                  Callbacks,Protocols;
+          Callbacks = {
+              afterEncrypt: emptyFn,
+              afterShare: emptyFn,
+              afterUserinfo: emptyFn,
+              afterLogin: emptyFn,
+              afterDevice: emptyFn,
+              afterUploadImage: emptyFn
+          }
+          Protocols = {
+              share: 'share://',
+              updateprofile: 'updateprofile://',
+              encrypt: 'encrypt://',
+              pushview: 'pushview://{TYPE}',
+              userinfo: 'userinfo://',
+              login: 'login://',
+              device: 'device://',
+              uploadImageByCamera: 'uploadimage://camera/{W}_{H}',
+              uploadImageByAlbum: 'uploadimage://album/{W}_{H}'
+          }
+
+          protocol = protocol || emptyFn;
+
+          function afterCallback(rs,callback){
+              callback = callback || emptyFn;
+              callback(rs);
+              callback = emptyFn;
+          }
+          window.__newsapp_share_done = function(rs){
+              afterCallback(rs,Callbacks.afterShare);
+          }
+          window.__newsapp_encrypt_done = function(rs){
+              afterCallback(rs,Callbacks.afterEncrypt);
+          }
+          window.__newsapp_userinfo_done = function(rs){
+              afterCallback(rs,Callbacks.afterUserinfo);
+          }
+          window.__newsapp_login_done = function(rs){
+              afterCallback(rs,Callbacks.afterLogin);
+          }
+          window.__newsapp_device_done = function(rs){
+              afterCallback(rs,Callbacks.afterDevice);
+          }
+          window.__newsapp_upload_image_done = function(rs){
+              afterCallback(rs,Callbacks.afterUploadImage);
+          }
+          //更新用户资料
+          function updateProfile(){
+              protocol(Protocols.updateprofile,true);
+          }
+          /**
+           * 登录
+           * @param {Function} callback 成功回调
+           */
+          function login(callback){
+              Callbacks.afterLogin = callback;
+              protocol(Protocols.login,true);
+          }
+          /**
+           * 获取用户信息
+           * @param {Function} callback 成功回调
+           */
+          function userInfo(callback){
+              Callbacks.afterUserinfo = callback;
+              protocol(Protocols.userinfo,true);
+          }
+          /**
+           * 获取设备信息
+           * @param {Function} callback 成功回调
+           */
+          function device(callback){
+              Callbacks.afterDevice = callback;
+              protocol(Protocols.device,true);
+          }
+          /**
+           * 分享
+           * @param {Function} callback 成功回调
+           */
+          function share(callback){
+              Callbacks.afterShare = callback;
+              protocol(Protocols.share,true);
+          }
+          /**
+           * 打开客户端视图
+           * @param {String} type feedback,font,personalcenter,skin,font
+           */
+          function pushView(type){
+              protocol(Protocols.pushview.replace('{TYPE}',type),true);
+          }
+          /**
+           * 加密
+           * @param {String} data 待加密数据
+           * @param {Function} callback 成功回调
+           */
+          function encrypt(data,callback){
+              Callbacks.afterEncrypt = callback;
+              if(window.extra && window.extra.__newsapp_encrypt){
+                  afterCallback( window.extra.__newsapp_encrypt(data),Callbacks.afterEncrypt );
+              }else{
+                  protocol(Protocols.encrypt+encodeURI(data),true);
+              }
+          }
+          /**
+           * 上传图片 调用摄像头
+           * @param {Integer} width 图片宽
+           * @param {Integer} height 图片高
+           */
+          function uploadImageByCamera(width,height){
+              protocol( Protocols.uploadImageByCamera.replace('{W}',width).replace('{H}',height),true );
+          }
+          /**
+           * 上传图片 调用图库
+           * @param {Integer} width 图片宽
+           * @param {Integer} height 图片高
+           */
+          function uploadImageByAlbum(width,height){
+              protocol( Protocols.uploadImageByAlbum.replace('{W}',width).replace('{H}',height),true );
+          }
+          return {
+              isNewsApp: isNewsApp,
+              login: login,
+              userInfo: userInfo,
+              device: device,
+              share: share,
+              encrypt: encrypt,
+              updateProfile: updateProfile,
+              uploadImageByCamera: uploadImageByCamera,
+              uploadImageByAlbum: uploadImageByAlbum,
+              pushView: pushView
+          }
+      }//end newsApp
+      var tools = {
+        parseParam: function (oSource, oParams, isown){
+                      var key, obj = {};
+                      oParams = oParams || {};
+                      for (key in oSource) {
+                        obj[key] = oSource[key];
+                        if (oParams[key] != null) {
+                          if (isown) {
+                            if (oSource.hasOwnProperty[key]) {
+                              obj[key] = oParams[key];
+                            }
+                          }
+                          else {
+                            obj[key] = oParams[key];
+                          }
+                        }
+                      }
+                      return obj;
+                   },
+        randomList: function (list){
+          list.sort(function(){
+             return Math.random()-0.5;
+          });
+          return list;
+        }
+  };
+      function NTES(){
+          if (!window.location.origin){
+              window.location.origin = window.location.protocol
+                      + "//" + window.location.hostname
+                      + (window.location.port ? ':' + window.location.port: '');
+          }
+          //模板解析
+          function templeteParser(tpl,data){
+              tpl = tpl || '';
+              return tpl.replace(/{(([A-Z]|[_]|[0-9])+)}/g,function($1,$2){//大写字母,数字,下划线
+                  return (data[$2]==null) ? $1 : data[$2];
+              });
+          }
+          return {
+              localParam: localParam,
+              Navigator: Navigator,
+              MetaHandler: new MetaHandler,
+              Subject: Subject,
+              localStorage: window.localStorage,
+              localHost: window.location.origin,
+              templeteParser: templeteParser,
+              newsApp: new newsApp(Navigator.protocol),
+              tools: tools
+          }
+      }
+      window.NTES = new NTES();
+  })(window,document);
+  </script>
+  <script>
+  (function($,NTES){
+      var Actions,Links;
+      Actions = {
+          shareTask: NTES.localHost+'/nc/uc/qa/commit/'
+      };
+      Links = {
+          newsappDwonload: 'http://3g.163.com/ntes/special/00340BF8/newsappdowncommon.html',
+          thisPage: 'http://c.3g.163.com/nc/qa/turntable/index.html',
+          getList: 'http://active.163.com/service/project/v1/568/one.jsonp',
+          introPage: 'http://3g.163.com/ntes/14/0311/16/9N2PT9A400963VRO.html'
+      };
+
+     function Model(){
+         var me = this,
+             lcStorage = NTES.localStorage,
+             list,currentResult,
+             score= 0,
+             base = 0,
+             lastBase = 0,
+             listId = 0,
+             q = [],
+             a = [],
+             username = '未登录用户';
+         this.listUpdated = new NTES.Subject();
+         function AJAXHandler(option){
+             if(!option){return;}
+             $.ajax({
+                 type      : option.type,
+                 url       : option.action,
+                 dataType  : option.dataType,
+                 data      : option.data||null,//空值设置null避免向后端发送undefined无用参数
+                 success   : function(data, status, xhr){
+                     if(option.complete && typeof option.complete==='function'){
+                         option.complete({
+                             data: data,
+                             success: true
+                         });
+                     }
+                 },
+                 error : function(xhr, errorType, error){
+                     if(option.complete && typeof option.complete==='function'){
+                         option.complete({
+                             success: false
+                         });
+                     }
+                 }
+             });
+         }
+         this.setLocalValue = function(id,val){
+             lcStorage.setItem(id,val);
+         }
+         this.getLocalValue = function(id){
+             return lcStorage[id];
+         }
+         function getJSON(option){
+             if(!option){return;}
+             option.type = 'GET';
+             option.dataType = 'json';
+             AJAXHandler(option);
+         }
+         function getJSONP(action){
+             var s = document.createElement('script');
+                 s.onload = s.onerror = function(){
+                 s.parentNode.removeChild(s);
+                 s = null;
+             }
+             s.src = action;
+             document.head.appendChild(s);
+         }
+         function postJSON(option){
+             if(!option){return;}
+             option.type = 'POST';
+             option.dataType = 'json';
+             AJAXHandler(option);
+         }
+         this.setUserName = function(name){
+             username = name;
+         }
+         this.getUserName = function(){
+             return username;
+         }
+         this.setList = function(data){
+             list = data;
+             me.listUpdated.notify();
+         }
+         this.getList = function(){
+             return list;
+         }
+         this.requestList = function(data,callback){
+             getJSONP(Links.getList+"?callback=window.App.Controller._callback");
+         }
+         this.setScore = function(sc){
+           score = sc;
+         }
+         this.getScore = function(){
+           return score;
+         }
+         this.setCurrentResult = function(res){
+           currentResult = res;
+         }
+         this.getCurrentResult = function(){
+             return currentResult;
+         }
+         this.pushQ = function(qu){
+             q.push(qu);
+         }
+         this.getQ = function(){
+             return q;
+         }
+         this.clearQ = function(){
+             q.length = 0;
+         }
+         this.pushA = function(an){
+             a.push(an);
+         }
+         this.getA = function(){
+             return a;
+         }
+         this.clearA = function(){
+             a.length = 0;
+         }
+         this.setBase = function(ba){
+            base = ba;
+         }
+         this.getBase = function(){
+             return base;
+         }
+         this.getLastBase = function(){
+             return lastBase;
+         }
+         this.setLastBase = function(la){
+             lastBase = la;
+         }
+         this.setListId = function(id){
+           listId = id;
+         }
+         this.getListId = function(){
+            return listId;
+         }
+         this.postShareTask = function(data,callback){
+             postJSON({
+                 action: Actions.shareTask,
+                 data: {data:data},
+                 complete: function(data){
+                     callback && callback(data.success,data.data);
+                 }
+             });
+         }//end postCheckin
+
+     }
+     function View(model){
+       this._model = model;
+       var me = this,els;
+       var ifSelected = false;
+       var goldcoin = 0;
+         els = {
+         infoContainer: $("#_info_container"),
+           infoPlay: $("#_info_play"),
+           infoQuestion: $("#_info_question"),
+           infoShare: $("#_info_share"),
+         gameContainer: $("#_game_container"),
+         gameTitle: $("#_game_title"),
+           gameYes: $("#_game_yes"),
+         gameNo: $("#_game_no"),
+         finishContainer: $("#_finish_container"),
+           finishScoreRight: $("#_finish_score_right"),
+           finishScoreWrong: $("#_finish_score_wrong"),
+           finishResult: $("#_finish_result"),
+           finishShareScore: $("#_finish_shareScore"),
+           finishPlayAgain: $("#_finish_playAgain"),
+           finishWords: $("#_finish_words"),
+           submitData: $("#submitData"),
+           newsappSharetext: $("#__newsapp_sharetext"),
+           newsappSharephotourl: $("#__newsapp_sharephotourl"),
+           newsappSharewxtext: $("#__newsapp_sharewxtext"),
+           newsappSharewxtitle: $("#__newsapp_sharewxtitle"),
+           newsappSharewxurl: $("#__newsapp_sharewxurl"),
+           newsappSharewxthumburl: $("#__newsapp_sharewxthumburl"),
+           introContainer: $("#_intro_container")
+       };
+         var pageLoader = (function(){
+             var _showingPage = null;
+             return function(param){
+                 var defaultOptions = {
+                     pageToShow: null,
+                     animateIn: "fadeIn",
+                     pageToHide: _showingPage,
+                     animateOut: "fadeOut"
+                 };
+                 var finalParam = NTES.tools.parseParam(defaultOptions,param);
+                 if(!finalParam.pageToHide || !finalParam.pageToShow){
+                     throw "pageLoader error";
+                 }
+                 finalParam.pageToHide.addClass(finalParam.animateOut);
+                 setTimeout(function(){
+                     finalParam.pageToHide.hide();
+                     finalParam.pageToHide.removeClass(finalParam.animateOut);
+                     finalParam.pageToShow.show();
+                     finalParam.pageToShow.addClass(finalParam.animateIn);
+                     setTimeout(function(){
+                         finalParam.pageToShow.removeClass(finalParam.animateIn);
+                     },300);
+                 },500);
+                _showingPage = finalParam.pageToShow;
+             }
+         })();
+         var Turntable = (function(){
+           var count = 1;
+           var degs = 0;
+           var turning = false;
+           return function (){
+               var me = this,
+               els = {
+                 gameTurntable: $("#_game_turntable")
+               };
+               this.finishTurn = new NTES.Subject();
+               this.reset = new NTES.Subject();
+               this.start = function(base){
+                   turning = true;
+                   degs += (1080+90*base);
+                   els.gameTurntable.css("-webkit-transition","all 2s ease-in-out");
+                   els.gameTurntable.css("-webkit-transform","rotate("+degs+"deg)");
+                   setTimeout(function(){
+                       me.finishTurn.notify();
+                       turning = false;
+                       count++;
+                   },2000);
+               };
+               this.getCount = function(){
+                   return count;
+               };
+               this.getTurning = function(){
+                   return turning;
+               }
+               };
+       })();
+         function Countdown(){
+            var me = this,els;
+            els = {
+                gameCountdown: $("#_game_countdown"),
+                gameCountdownTime: $("#_game_countdown_time")
+            };
+            this.timeover = new NTES.Subject();
+            this.start = function(){
+              var startTime = 10;
+              els.gameCountdown.show();
+              me.countdownTimer = setInterval(function(){
+                  if(startTime == 0){
+                      clearInterval(me.countdownTimer);
+                      me.timeover.notify();
+                      me.stop();
+                      startTime = 10;
+                  }
+                els.gameCountdownTime.html(startTime);
+                startTime--;
+                },1000);
+            };
+            this.stop = function(){
+              els.gameCountdownTime.html(10);
+              els.gameCountdown.hide();
+              clearInterval(me.countdownTimer);
+            }
+         }
+         function Layer(){
+           var me = this,els;
+               lastClass = "";
+           els = {
+               layer: $("#layer"),
+               layerIcon: $("#_layer_icon")
+           };
+           this.showLayer = function(type){
+             els.layerIcon.removeClass(lastClass);
+             els.layerIcon.addClass("layer-"+type);
+             lastClass = "layer-"+type;
+             els.layer.addClass("animated fadeIn").show().removeClass("animated fadeIn");
+           };
+           this.hideLayer = function(){
+             els.layer.addClass("animated fadeOut").hide().removeClass("animated fadeOut");
+           }
+         }
+         function bindEvent(){
+
+         els.infoPlay.on("touchstart",function(){
+           els.infoPlay.addClass("press-play");
+           pageLoader({
+             pageToHide: els.infoContainer,
+             pageToShow: els.gameContainer
+           });
+           setTimeout(function(){
+               me.launched.notify();
+           },500);
+         });
+         els.infoQuestion.on("touchstart",function(){
+             window.location.href = Links.introPage;
+         });
+         els.infoShare.on("touchstart",function(){
+             me.shareBtClicked.notify("shareStart");
+         });
+         els.gameYes.on("touchstart",function(){
+           if(me.turnTable.getTurning() || ifSelected){
+               return;
+           }
+           ifSelected = true;
+           els.gameYes.addClass("press-yes");
+           if(me._model.getCurrentResult() == 'A'){
+              me.layer.showLayer('right');
+              me._model.setScore(me._model.getScore()+1);
+              me._model.pushA('A');
+           }
+           else{
+              me.layer.showLayer('wrong');
+              me._model.pushA('B');
+           }
+           me.countDown.stop();
+           setTimeout(function(){
+             me.turnTable.reset.notify();
+           },1500);
+         });
+         els.gameNo.on("touchstart",function(){
+            if(me.turnTable.getTurning() || ifSelected){
+                return;
+            }
+            ifSelected = true;
+            els.gameNo.addClass("press-no");
+             if(me._model.getCurrentResult() == 'B'){
+                 me.layer.showLayer('right');
+                 me._model.setScore(me._model.getScore()+1);
+                 me._model.pushA('A');
+             }
+             else{
+                 me.layer.showLayer('wrong');
+                 me._model.pushA('B');
+             }
+             me.countDown.stop();
+             setTimeout(function(){
+                 me.turnTable.reset.notify();
+             },1500);
+         });
+         els.gameYes.on("touchend",function(){
+           els.gameYes.removeClass("press-yes");
+         });
+         els.gameNo.on("touchend",function(){
+             els.gameNo.removeClass("press-no");
+         });
+         els.finishShareScore.on("touchstart",function(){
+           els.finishShareScore.addClass("press-yes");
+         });
+         els.finishPlayAgain.on("touchstart",function(){
+             els.finishPlayAgain.addClass("press-no");
+             window.location.reload();
+         });
+         els.finishShareScore.on("touchend",function(){
+             els.finishShareScore.removeClass("press-yes");
+         });
+         els.finishPlayAgain.on("touchend",function(){
+             els.finishPlayAgain.removeClass("press-no");
+         });
+         els.finishShareScore.on("touchstart",function(){
+           me.shareBtClicked.notify("sharePoint");
+         });
+         }
+       this.turnTable = new Turntable();
+       this.countDown = new Countdown();
+       this.layer = new Layer();
+       this.launched = new NTES.Subject();
+       this.shareBtClicked = new NTES.Subject();
+       this.getGoldcoin =new NTES.Subject();
+       this.init = function(){
+           bindEvent();
+           NTES.MetaHandler.fixViewportWidth(640);
+           me._model.listUpdated.register({
+               update: function(){
+                 var data = me._model.getList();
+                 var index = me.turnTable.getCount();
+                 var lastBase = me._model.getLastBase();
+                 var thisData = data.slice((index-1)*4,index*4);
+                 var base = Math.floor(Math.random()*4);
+                 me._model.setBase(base);
+                 var res = thisData[(base+lastBase)%4].split("#")[2];
+                 me._model.setCurrentResult(res);
+                 for(var i = 0;i < 4;i++){
+                   var temp = thisData[i].split("#");
+                   $("#data"+i+" span:nth-child(1)").html(temp[0]);
+                   $("#data"+i+" span:nth-child(2)").html(temp[1]);
+                 }
+                 me._model.pushQ(thisData[(base+lastBase)%4].split("#")[3]);
+                 me.turnTable.start(base);
+               }
+           });
+           me.turnTable.finishTurn.register({update: function(){
+               me.countDown.start();
+               var base = me._model.getBase();
+               var lastBase = me._model.getLastBase();
+               $("#data"+(base+lastBase)%4).attr("mark","color");
+               $("#data"+((base+lastBase)%4)+" span:nth-child(1)").css("color","#ffffff");
+               $("#data"+((base+lastBase)%4)+" span:nth-child(2)").css("color","#a25816");
+               me._model.setLastBase(base+lastBase);
+           }
+           });
+           me.turnTable.reset.register({update: function(){
+               $("[mark=color] span:nth-child(1)").css("color","#ff949c");
+               $("[mark=color] span:nth-child(2)").css("color","#d09d58");
+               var count = me.turnTable.getCount();
+               if(count<=10){
+               pageLoader({
+                   pageToShow: els.gameContainer,
+                   pageToHide: els.gameContainer
+               });
+               me.layer.hideLayer();
+               setTimeout(function(){
+                   me._model.listUpdated.notify();
+                   els.gameTitle.html(me.turnTable.getCount());
+                   ifSelected = false;
+               },500);
+               }
+               else{
+                   var random = parseInt(Math.random()*6);
+                   var score = me._model.getScore();
+                   if(score >= 3 && score < 5){
+                       random = parseInt(Math.random()*(75-60+1) + 60);
+                   }
+                   else if(score < 3){
+                       random = parseInt(Math.random()*(35-15+1) + 15);
+                   }
+                   var level = "E";
+                   goldcoin = 0;
+                   var words = "你的成绩只超越了"+random+"%的网易小伙伴,再接再厉哦,答对5题就有机会赢金币";
+                   /*switch (score){
+                       case 10:
+                           level = "A";
+                           words = "恭喜你，你的成绩超过了"+(93+random)+"%的网易小伙伴";
+                           goldcoin = 50;
+                           break;
+                       case 9:
+                           level = "B";
+                           words = "恭喜你，你的成绩超过了"+(87+random)+"%的网易小伙伴";
+                           goldcoin = 30;
+                           break;
+                       case 8:
+                           level = "C";
+                           words = "恭喜你，你的成绩超过了"+(81+random)+"%的网易小伙伴";
+                           goldcoin = 20;
+                           break;
+                       case 7:
+                           level = "D";
+                           words = "恭喜你，你的成绩超过了"+(75+random)+"%的网易小伙伴";
+                           goldcoin = 10;
+                           break;
+                       default :
+                           level = "E";
+                           words = "你的成绩只超越了"+random+"%的网易小伙伴，再接再厉哦，答对12题就有机会赢金币";
+                           goldcoin = 0;
+                   }*/
+                   if(score <= 10 && score >= 9){
+                       level = "A";
+                       words = "恭喜你，你的成绩超过了"+(93+random)+"%的网易小伙伴";
+                       goldcoin = 50;
+                   }
+                   else if(score < 9 && score >= 7){
+                       level = "B";
+                       words = "恭喜你，你的成绩超过了"+(87+random)+"%的网易小伙伴";
+                       goldcoin = 30;
+                   }
+                   else if(score < 7 && score >=5){
+                       level = "C";
+                       words = "恭喜你，你的成绩超过了"+(81+random)+"%的网易小伙伴";
+                       goldcoin = 20;
+                   }
+                   else{
+                       level = "D";
+                       words = "你的成绩只超越了"+random+"%的网易小伙伴，再接再厉哦，答对5题就有机会赢金币";
+                       goldcoin = 0;
+                   }
+                   me.layer.hideLayer();
+                   pageLoader({
+                       pageToShow: els.finishContainer,
+                       pageToHide: els.gameContainer
+                   });
+                   setTimeout(function(){
+                       els.finishResult.addClass('finish-result'+level);
+                       els.finishScoreRight.html(score);
+                       els.finishScoreWrong.html(10-score);
+                       els.finishWords.html(words);
+                   },500);
+                   var qs = me._model.getQ();
+                   var as = me._model.getA();
+                   for(var i = 0;i < qs.length; i++){
+                     els.submitData.append('<input name="'+qs[i]+'" value="'+as[i]+'" style="display:none;">');
+                   }
+                   els.submitData.append('<input name="username" value="'+me._model.getUserName()+'" style="display:none;"> ');
+                   els.submitData.submit();
+                   me.getGoldcoin.notify(goldcoin);
+               }
+           }});
+           me.countDown.timeover.register({update: function(){
+               me.layer.showLayer('timeover');
+               me._model.pushA('B');
+               ifSelected = true;
+               setTimeout(function(){
+                   me.turnTable.reset.notify();
+               },1500);
+           }
+           });
+       };
+       this.newsappEditShare = function(words){
+         els.newsappSharetext.html(words);
+         els.newsappSharewxtext.html(words);
+       }
+       this.addGoldcoin = function(){
+         setTimeout(function(){
+          els.finishWords.append("，获得了"+goldcoin+"金币");
+         },500);
+       }
+     }
+     function Controller(model,view){
+         this._view = view;
+         this._model = model;
+         var me = this;
+         var passport,isLogined = false,isNewsapp = NTES.newsApp.isNewsApp,isLaunched = false;
+         function redirectToDownload(link){
+             window.location = Links.newsappDwonload+'#url=newsapp://web/'+link;
+         }
+         this._callback = function(args){
+            var data = [];
+            if(args.status == 'success'){
+                me._model.setListId(args.formId);
+                while(!!args.schema.length){
+                    var temp = args.schema.shift();
+                    data.push(temp.title+"#"+temp.ns);
+                }
+                data.length = 60;
+                me._model.setList(NTES.tools.randomList(data));
+            }
+         };
+         me._view.launched.register({
+             update: function(){
+                 if(isNewsapp){
+                     NTES.newsApp.userInfo(function(rs){
+                         if(rs && rs.name){
+                             isLogined = true;
+                             passport = rs.name;
+                             me._model.setUserName(rs.name);
+                             onLaunched();
+                         }
+                     });
+                     setTimeout(function(){
+                         onLaunched();
+                     },1000);
+                 }else{
+                     onLaunched();
+                 }
+                 //onLaunched();
+             }
+         });
+         me._view.shareBtClicked.register({
+             update : function(type){
+                 var words = "";
+                 var sharePhotoUrl = "";
+                 if(type == "shareStart"){
+                     words = "我在@网易新闻客户端 准备参加#新闻大转盘#活动，这个活动看起来好像有意思，每日参与还可以领金币，独乐乐不如众乐乐，你要不要一起来？";
+                 }
+                 else if(type == "sharePoint"){
+                 var score = me._model.getScore();
+                 if(score >= 9 && score <= 10){
+                   words = "我在@网易新闻客户端 参加了#新闻大转盘#活动，一口气答对了（"+score+"）道题不费力，不是我吹，你绝对无法超越我，不信你来试试？";
+                 }
+                 else if(score < 9 && score >= 6){
+                   words = "我在@网易新闻客户端 参加了#新闻大转盘#活动，居然只答对了（"+score+"）道题，这绝对是小编出题出的太恶心的原因，不信你来试试？";
+                 }
+                 else if(score < 6){
+                   words = "我在@网易新闻客户端 参加了#新闻大转盘#活动，答对了（"+score+"）道题，其实这些题我都会，我只是想调戏下孱弱的小编，你要不要跟我一起来？";
+                 }
+                 }
+                 words = words+" http://3g.163.com/links/4882";
+                 me._view.newsappEditShare(words,sharePhotoUrl);
+                 if(isNewsapp){
+                 setTimeout(function(){
+                     NTES.newsApp.share();
+                 },500);
+                 }else{
+                     redirectToDownload(Links.thisPage);
+                 }
+             }
+         });
+         me._view.getGoldcoin.register({
+             update: function(goldcoin){
+               if(goldcoin == 0){
+                   return;
+               }
+               if(isNewsapp){
+                 if(isLogined){
+                     var data = [];
+                     data.push('{');
+                     data.push('"userid":"'+passport+'"');
+                     data.push(',"version":"turntable_'+me._model.getListId()+'"');
+                     data.push(',"score":'+goldcoin);
+                     data.push('}');
+
+                     NTES.newsApp.encrypt( data.join(''),function(rs){
+                         me._model.postShareTask(rs,function(code,data){
+                             if(data.code == "200" || data.code == 200){
+                                 me._view.addGoldcoin();
+                             }
+                             NTES.newsApp.updateProfile();
+                         });
+                     });
+                 }else{
+                     isNewsapp && NTES.newsApp.login(function(rs){
+                         rs && window.location.reload();
+                     });
+                 }
+               }else{
+                   redirectToDownload(Links.thisPage);
+               }
+             }
+         });
+         function onLaunched(){
+             if(isLaunched){return;}
+             isLaunched = true;
+                 me._model.requestList({},function(){});
+         }
+     }
+      function App(){
+          var M = new Model(),
+              V = new View(M),
+              C = new Controller(M,V);
+          this.Controller = C;
+          V.init();
+      }
+      setTimeout(function(){
+          window.App = new App();
+      },250);
+  })(Zepto,NTES);
+  </script>
+</body>
+</html>
